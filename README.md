@@ -3,6 +3,10 @@ Alfred Workflow: Authy
 
 An Alfred workflow for Authy that generates TOTP and copies them to the clipboard.
 
+[![CI](https://img.shields.io/github/actions/workflow/status/stevelacey/alfred-authy/ci.yml?branch=main&style=flat-square)](https://github.com/stevelacey/alfred-authy/actions/workflows/ci.yml?query=branch:main)
+[![Coverage](https://img.shields.io/codecov/c/github/stevelacey/alfred-authy?style=flat-square)](https://codecov.io/gh/stevelacey/alfred-authy)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE.md)
+
 
 Installation
 ------------
