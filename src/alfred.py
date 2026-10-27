@@ -148,10 +148,14 @@ class AlfredWorkflow(object):
         )
 
     def warning_item(self, title, message, uid=0):
-        return self.message_item(title=title, message=message, uid=uid, icon="icon.png")
+        return self.message_item(
+            title=title, message=message, uid=uid, icon="warning.png"
+        )
 
     def error_item(self, title, message, uid=0):
-        return self.message_item(title=title, message=message, uid=uid, icon="icon.png")
+        return self.message_item(
+            title=title, message=message, uid=uid, icon="error.png"
+        )
 
     def exception_item(self, title, exception, uid=0):
         message = str(exception).replace("\n", " ")

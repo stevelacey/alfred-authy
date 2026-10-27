@@ -7,7 +7,7 @@ An Alfred workflow for Authy that generates TOTP and copies them to the clipboar
 Installation
 ------------
 
-Create a `~/.authy` file with your secrets:
+Create a `~/.config/authy` file with your secrets:
 
 ```ini
 [Google]
@@ -17,7 +17,9 @@ secret=xxxxxxxxxxxxxxxxxx
 secret=yyyyyyyyyyyyyyyyyy
 ```
 
-[Download](https://github.com/stevelacey/alfred-workflow-authy/raw/main/Authy.alfredworkflow) and import to Alfred
+A `~/.authy` file still works if there isn't one in `~/.config`.
+
+[Download](https://github.com/stevelacey/alfred-authy/raw/main/Authy.alfredworkflow) and import to Alfred
 
 
 Dependencies

@@ -187,7 +187,7 @@
         <key>removeextension</key>
         <false/>
         <key>text</key>
-        <string>Verification code ({query}) has been written at the Cursor</string>
+        <string>Verification code ({query}) has been copied to the clipboard</string>
         <key>title</key>
         <string>Authy</string>
       </dict>
@@ -319,7 +319,7 @@
         <key>keyword</key>
         <string>a add</string>
         <key>subtext</key>
-        <string>Name secret</string>
+        <string>Account name, secret</string>
         <key>text</key>
         <string>Add a new secret</string>
         <key>withspace</key>
@@ -436,7 +436,7 @@ An Alfred workflow for Authy that generates TOTP and copies them to the clipboar
  
 System Modifications
 ————————————————————
-Create a ~/.authy file with your secrets:
+Create a ~/.config/authy file with your secrets (~/.authy also works):
 
 [Google]
 secret = xxxxxxxxxxxxxxxxxx
@@ -446,7 +446,7 @@ secret = yyyyyyyyyyyyyyyyyy
  
 Links
 —————
-- GitHub: https://github.com/stevelacey/alfred-workflow-authy
+- GitHub: https://github.com/stevelacey/alfred-authy
  
 Acknowledgments
 ——————————————-
@@ -555,6 +555,6 @@ Acknowledgments
   <key>version</key>
   <string>1.0.0</string>
   <key>webaddress</key>
-  <string>https://github.com/stevelacey/alfred-workflow-authy</string>
+  <string>https://github.com/stevelacey/alfred-authy</string>
 </dict>
 </plist>

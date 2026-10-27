@@ -2,7 +2,6 @@
 
 import os
 import configparser
-import time
 
 import alfred
 import otp
@@ -20,11 +19,13 @@ class AlfredAuthy(alfred.AlfredWorkflow):
 
     _reserved_words = ["add", "update", "remove"]
 
-    def __init__(self, config_file="~/.authy", max_results=20):
+    _legacy_config_file = "~/.authy"
+
+    def __init__(self, config_file=None, max_results=20):
         self.max_results = max_results
 
-        self._config_file = config_file
-        self.config_file = os.path.expanduser(self._config_file)
+        self.config_file = os.path.expanduser(config_file or self.find_config())
+        self._config_file = self.config_file.replace(os.path.expanduser("~"), "~", 1)
         self.config = configparser.RawConfigParser()
         self.config.read(self.config_file)
 
@@ -44,7 +45,18 @@ class AlfredAuthy(alfred.AlfredWorkflow):
             )
             self.write_item(item)
 
+    @classmethod
+    def find_config(cls):
+        # Use the XDG config path, falling back to the original ~/.authy if that's all there is
+        config_home = os.environ.get("XDG_CONFIG_HOME") or "~/.config"
+        config_file = os.path.join(os.path.expanduser(config_home), "authy")
+        legacy = os.path.expanduser(cls._legacy_config_file)
+        if not os.path.exists(config_file) and os.path.exists(legacy):
+            return legacy
+        return config_file
+
     def create_config(self):
+        os.makedirs(os.path.dirname(self.config_file), exist_ok=True)
         with open(self.config_file, "w") as f:
             f.write(self._config_file_initial_content)
             f.close()
@@ -134,12 +146,12 @@ class AlfredAuthy(alfred.AlfredWorkflow):
 
     def do_add_account(self, query):
         try:
-            account, secret = query.split(" ", 1)
+            account, secret = query.split(",", 1)
             account = account.strip()
             secret = secret.strip()
         except ValueError:
             return self.write_text(
-                "Invalid arguments!\n" "Please enter: account secret."
+                "Invalid arguments!\n" "Please enter: account, secret."
             )
 
         return self.write_text(self.add_account(account, secret))
